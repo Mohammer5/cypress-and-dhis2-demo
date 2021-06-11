@@ -1,0 +1,54 @@
+{
+  "name": "cra-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@dhis2/app-runtime": "^2.8.0",
+    "@dhis2/d2-i18n": "^1.1.0",
+    "@dhis2/ui": "^6.9.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "styled-jsx": "^3.4.4",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "cy:start": "BROWSER=none yarn start",
+    "cy:open": "concurrently --names 'app,cy' 'yarn cy:start' 'wait-on http-get://localhost:3000 && cypress open'",
+    "cy:run": "concurrently --names 'app,cy' --kill-others --success first 'yarn cy:start' 'wait-on http-get://localhost:3000 && cypress run'"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "globals": {
+      "Cypress": "readonly",
+      "cy": "readonly"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "cypress": "^7.5.0",
+    "wait-on": "^5.3.0"
+  }
+}

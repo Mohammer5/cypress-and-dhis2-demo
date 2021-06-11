@@ -1,0 +1,40 @@
+{
+    "name": "dhis2-cypress-solution",
+    "version": "1.0.0",
+    "description": "",
+    "license": "BSD-3-Clause",
+    "private": true,
+    "scripts": {
+        "build": "d2-app-scripts build",
+        "start": "d2-app-scripts start",
+        "test": "d2-app-scripts test",
+        "lint": "d2-style check",
+        "lint:staged": "yarn lint --staged",
+        "format": "d2-style apply",
+        "format:staged": "yarn format --staged",
+        "deploy": "d2-app-scripts deploy",
+
+        "cy:start": "BROWSER=none yarn start",
+        "cy:wait-on": "wait-on http-get://localhost:3000",
+        "cy:concurrently": "concurrently --names 'app,cy' --success first --kill-others",
+        "cy:open": "yarn cy:concurrently 'yarn cy:start' 'yarn cy:wait-on && cypress open'",
+        "cy:run": "yarn cy:concurrently 'yarn cy:start' 'yarn cy:wait-on && cypress run'",
+        "cy:run:tags": "yarn cy:concurrently 'yarn cy:start' 'yarn cy:wait-on && cypress-tags run'"
+    },
+    "devDependencies": {
+        "@dhis2/cli-app-scripts": "^6.2.0",
+        "@dhis2/cli-style": "^8.4.1",
+        "@dhis2/cypress-commands": "^7.0.1",
+        "@dhis2/cypress-plugins": "^7.0.1",
+        "concurrently": "^6.2.0",
+        "cypress": "^7.5.0",
+        "cypress-cucumber-preprocessor": "^4.1.2",
+        "wait-on": "^5.3.0"
+    },
+    "dependencies": {
+        "@dhis2/app-runtime": "^2.8.0",
+        "@dhis2/d2-i18n": "^1.1.0",
+        "@dhis2/ui": "^6.9.0",
+        "styled-jsx": "^3.4.4"
+    }
+}
